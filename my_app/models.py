@@ -12,3 +12,10 @@ class blogs(models.Model):
 
         topico=models.CharField(max_length=60)
         cantidad=models.IntegerField()
+
+class mascotas(models.Model):
+
+        nombre = models.CharField(max_length= 48)
+        especie = models.CharField(max_length= 48)
+        edad = models.IntegerField()
+

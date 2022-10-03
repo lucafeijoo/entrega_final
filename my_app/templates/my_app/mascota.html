@@ -33,8 +33,26 @@
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder">Luca and Luca company</h1>
-                    <p class="lead mb-0">S.A</p>
+                    <h1 class="fw-bolder">Ingresa tu mascota</h1>
+                    <p class="lead mb-0">no aceptamos gatos naranjas</p>
                 </div>
             </div>
         </header>
+        <form method="POST">
+            {% csrf_token %}
+            <p>
+                Nombre:
+                <input type="text" name= "nombre">
+            </p>
+            <p>
+                Especie:
+                <input type="text" name= "especie">
+            </p>
+            <p>
+                Edad:
+                <input type="text" name= "edad">
+            </p>
+            <input type="submit" value="aceptar"/>
+        </form>
+
+            

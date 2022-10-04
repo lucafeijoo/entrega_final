@@ -22,14 +22,29 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'blogs' %}">Blogs</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Login' %}">Ingresar</a></li>
+                        {% if user.is_authenticated %}
+                        <div class="dropdown">
+                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{user}}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{% url 'editar_usuario' %}">Editar Usuario</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Logout' %}"><strong>Logout</strong></a></li>
+                        </ul>
+                        </div>
+                        {% else %}
+                        <li><a class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
+                        {% endif %}}
+                        </ul>
+                    </div>
                     </ul>
                 </div>
             </div>
         </nav>
-        
         {% if mensaje %} 
+
         <span> {{mensaje}} </span>
+        
         {% endif %}
 
         {% block contenidoQueCambia %}
@@ -37,7 +52,7 @@
         {% endblock %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Entrega Final &copy; Luca Garavelli y Luca Feijo</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,16 +1,29 @@
-{% extends "my_app/plantilla_base.html" %}
+{% extends 'my_app/plantilla_base.html' %}
 
 {% block contenidoQueCambia %}
 
-        </nav>
+  <!-- Page content-->
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+                <header class="mb-4">
+                    <h1 class="fw-bolder mb-1">Sobre Nosotros</h1>
+                    <div class="text-muted fst-italic mb-2">El proyecto es una pagina estilo blog, donde usuarios pueden crear, editar y eliminar blogs solo si están logueados. Además, se puede crear una cuenta y loguear, luego de eso se habilitara un menú desplegable donde se podra modificar el usuario y hacer logout. El avatar se puede agregar o cambiar desde el Admin.  </div>
 
-        <header class="py-5 bg-light border-bottom mb-4">
-            <div class="container">
-                <div class="text-center my-5">
-                    <h1 class="fw-bolder">Luca and Luca company</h1>
-                    <p class="lead mb-0">S.A</p>
-                </div>
-            </div>
-        </header>
+                </header>
+                
+                <figure class="mb-4"><img class="img-fluid rounded" src="https://i.im.ge/2022/10/05/1zrzE4.Sin-titulo-1.png" alt="..." /></figure>
+                <section class="mb-5">
+                    <p class="fs-5 mb-4"><b>Luca Garavelli</b></p>
+                    <p class="fs-5 mb-4"> Tengo 18 años y estudie en el Colegio Inmaculada Concepción, Lomas de Zamora. <br> Mi Gmail es: lucagaravelli10@gmail.com</p>
+                
+                    <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
 
+                    <p class="fs-5 mb-4"><b>Luca Feijo</b></p>
+                    <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
+                </section>
+        </div>
+        
 {% endblock %}
+
+        

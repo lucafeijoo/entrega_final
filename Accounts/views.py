@@ -1,8 +1,14 @@
 from django.shortcuts import render
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
-from Accounts.forms import UserRegisterForm
+from django.contrib.auth.views import LogoutView 
+from django.urls import reverse_lazy, reverse
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from Accounts.forms import UserRegisterForm,UserUpdateForm
 
 def login_request(request):
 
@@ -44,3 +50,17 @@ def register(request):
     }
 
     return render(request, "Accounts/register.html", context=context)
+
+
+class CustomLogoutView(LogoutView):
+    next_page = reverse_lazy('Login')
+
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    success_url = reverse_lazy('editar_usuario')
+    template_name = 'Accounts/form_perfil.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user

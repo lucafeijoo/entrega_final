@@ -138,4 +138,4 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-LOGIN_URL = '/Accounts/login/'
+LOGIN_URL = '/accounts/login/'

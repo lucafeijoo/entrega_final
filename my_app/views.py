@@ -18,25 +18,6 @@ def blogs(request):
 
         return render (request, "my_app/blogs.html")
 
-def otros(request):
-
-        return render (request, "my_app/otros.html")
-
-
-def otros(request):
-
-        return render (request, "my_app/otros.html")
-
-
-def mascotas(request):
-        if request.method == "POST":
-                data_form = request.POST
-                mascota = mascotas(nombre=data_form["nombre"], especie=data_form["especie"], edad=data_form["edad"])
-                mascota.save
-                return render(request, "my_app/inicio.html")
-
-        return render (request, "my_app/mascota.html" )
-
 
 # def login_request(request):
 

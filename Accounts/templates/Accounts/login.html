@@ -1,18 +1,15 @@
 {% extends "my_app/plantilla_base.html" %}
 
 {% block contenidoQueCambia %}
-    <body>
 
-        <form action="" method="POST">
+        <form method="POST">
             {% csrf_token %}
             {{form.as_p}}
 
-            <button type "submit"> Iniciar sesion</button>
+            <input type = "submit" value = "Iniciar sesion" />
 
         </form>
 
-            
-
-    </body>
+        <a href="{% url 'Registro' %}">Registrarse</a>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from my_app.forms import mascotas
+from my_app.models import mascotas
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 
@@ -29,9 +29,9 @@ def otros(request):
 
 
 def mascotas(request):
-        if request.method == "POST":
-                data_form = request.POST
-                mascota = mascotas(nombre=data_form["nombre"], especie=data_form["especie"], edad=data_form["edad"])
+        if request.method == "post":
+                dataform = request.POST
+                mascota = mascotas(nombre=dataform["nombre"], especie=dataform["especie"], edad=dataform["edad"])
                 mascota.save
                 return render(request, "my_app/inicio.html")
 

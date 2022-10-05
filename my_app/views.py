@@ -50,7 +50,7 @@ def crear_blog(request):
         
         form = BlogForm()
     
-    return render(request, "my_app/form_blogs.html", {"form": form})
+    return render(request, "my_app/blog_form.html", {"form": form})
 
 
 class BlogUpdate(LoginRequiredMixin,UpdateView):

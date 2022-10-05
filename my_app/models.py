@@ -1,5 +1,12 @@
 from time import timezone
 from django.db import models
+
+
+class mascotas(models.Model):
+
+        nombre = models.CharField(max_length= 48)
+        especie = models.CharField(max_length= 48)
+        edad = models.IntegerField()
 from django.contrib.auth.models import User
 from datetime import date
 from django.utils import timezone

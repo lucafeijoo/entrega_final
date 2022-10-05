@@ -1,0 +1,14 @@
+{% extends "my_app/plantilla_base.html"  %}
+
+{% block contenidoQueCambia %}
+
+<form method = "post">
+
+    {% csrf_token %}
+
+    ¿Confirmas la eliminación del Blog "{{ object }}"?
+
+    <input type = "submit" value = "Eliminar" />
+  </form>
+
+{% endblock %}

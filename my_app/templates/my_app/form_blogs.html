@@ -1,0 +1,15 @@
+{% extends "my_app/plantilla_base.html"  %}
+
+{% block contenidoQueCambia %}
+
+<form method = "post">
+
+  {% csrf_token %}
+
+  {{ form.media }}
+  {{ form.as_p }}
+
+  <input type = "submit" value = "Crear" />
+</form>
+
+{% endblock %}

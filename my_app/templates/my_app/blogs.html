@@ -2,4 +2,27 @@
 
 {% block contenidoQueCambia %}
 
+{% if object_list %}
+
+{% for blog in object_list %}
+
+  Titulo: {{blog.titulo}}
+
+  {{object.imagen.url}}
+
+  <a href="{% url 'modificar' blog.id %}"> Modificar</a> 
+  <a href="{% url 'eliminar' blog.id %}"> Eliminar</a>
+  <a href="{% url 'sabermas' blog.id %}"> Saber más</a>
+
+
+{% endfor %}
+
+{% else %}
+
+<h1>No hay blogs creados por el momento</h1>
+
+{% endif %}
+
+<a href="{% url 'crear' %}"> Crear Blog </a></table>
+
 {% endblock %}

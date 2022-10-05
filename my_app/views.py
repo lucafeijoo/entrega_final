@@ -1,22 +1,34 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from my_app.models import mascotas
+from typing import Dict
+from urllib import request
+from my_app.models import Blog
+from my_app.forms import BlogForm
+from django.shortcuts import render,redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.views import LogoutView 
+from django.urls import reverse_lazy, reverse
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
-# Create your views here.
 
 def inicio(request):
 
         return render (request, "my_app/inicio.html")
 
+
 def nosotros(request):
 
         return render (request, "my_app/nosotros.html")
 
-def blogs(request):
 
-        return render (request, "my_app/blogs.html")
+class BlogList(ListView):
+    model = Blog
+    template_name = "my_app/blogs.html"
 
 def otros(request):
 
@@ -38,24 +50,35 @@ def mascotas(request):
         return render (request, "my_app/mascota.html" )
 
 
-# def login_request(request):
+class BlogDelete(LoginRequiredMixin,DeleteView):
+    model = Blog
+    success_url = reverse_lazy('blogs')
 
-#         if request.method == "POST":
-#                 form = AuthenticationForm(request, data = request.POST)
 
-#                 if form.is_valid():
-#                         usuario = form.cleaned.data.get("username")
-#                         contra = form.cleaned.data.get("password")
+@login_required
+def crear_blog(request):
+    if request.method == 'POST':
+        form = BlogForm(request.POST,request.FILES)
 
-#                         user = authenticate(username=usuario, password=contra)
+        if form.is_valid():
+            blog = form.save()
+            blog.autor = request.user
+            blog.save()
+            return redirect(reverse('blogs'))
+    
+    else:
+        
+        form = BlogForm()
+    
+    return render(request, "my_app/form_blogs.html", {"form": form})
 
-#                         if user is not None:
-#                                 login(request, user)
-#                                 return render(request, "my_app/inicio.html", {"mensaje":f"bienvenido {usuario}"})
-#                         else:
-#                                 return render(request, "my_app/inicio.html", {"mensaje":"error"})
-#                 else:
-#                                 return render(request, "my_app/inicio.html", {"mensaje":"error dos"})
-#         form = AuthenticationForm()
-#         return render(request, "my_app/inicio.html", {"form":form})
 
+class BlogUpdate(LoginRequiredMixin,UpdateView):
+    model = Blog
+    success_url = reverse_lazy('blogs')
+    fields  = [  'titulo', 'subtitulo', 'cuerpo']
+
+
+class BlogDetail(DetailView):
+    model = Blog
+    template_name = "my_app/blogs_sabermas.html"

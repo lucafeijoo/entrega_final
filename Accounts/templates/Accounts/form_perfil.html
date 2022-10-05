@@ -1,0 +1,19 @@
+{% extends "my_app/plantilla_base.html" %}
+
+{% block contenidoQueCambia %}
+<p>Tu nombre de usuario es <b>{{ object.username }}</b></p>
+
+<h3>Modificar datos</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Guardar"/>
+</form>
+
+{% if user.avatar %}
+
+<img src="{{user.avatar.imagen.url}}"/>
+
+{% endif %}
+
+{% endblock %}

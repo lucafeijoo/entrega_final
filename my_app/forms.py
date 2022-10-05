@@ -1,5 +1,5 @@
 from django import forms
-from django import forms
+from my_app.models import Blog
 
 # class mascotas(forms.Form):
 
@@ -7,3 +7,7 @@ from django import forms
 #     especie = forms.CharField(max_length= 48)
 #     edad = forms.IntegerField()
     
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model= Blog
+        fields = ['titulo','subtitulo','cuerpo']

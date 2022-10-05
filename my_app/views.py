@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from my_app.models import mascotas
 from typing import Dict
 from urllib import request
 from my_app.models import Blog
@@ -29,25 +28,6 @@ def nosotros(request):
 class BlogList(ListView):
     model = Blog
     template_name = "my_app/blogs.html"
-
-def otros(request):
-
-        return render (request, "my_app/otros.html")
-
-
-def otros(request):
-
-        return render (request, "my_app/otros.html")
-
-
-def mascotas(request):
-        if request.method == "post":
-                dataform = request.POST
-                mascota = mascotas(nombre=dataform["nombre"], especie=dataform["especie"], edad=dataform["edad"])
-                mascota.save
-                return render(request, "my_app/inicio.html")
-
-        return render (request, "my_app/mascota.html" )
 
 
 class BlogDelete(LoginRequiredMixin,DeleteView):
